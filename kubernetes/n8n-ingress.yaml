@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: n8n-ingress
+  namespace: default
+  annotations:
+    # Add necessary annotations for your specific Ingress controller and cert-manager
+    # e.g., nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+spec:
+  rules:
+  - host: "n8n.jvfl.dev"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: n8n
+            port:
+              number: 80 # or 5678 depending on your service config
